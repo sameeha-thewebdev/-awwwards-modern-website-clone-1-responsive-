@@ -175,7 +175,7 @@ function canvas() {
     },
     onUpdate: render,
   });
-
+  
   images[1].onload = render;
 
   function render() {
@@ -302,23 +302,10 @@ function canvas1() {
   ./bridges00157.png
   ./bridges00160.png
   ./bridges00163.png
-  ./bridges00166.png
-  ./bridges00169.png
-  ./bridges00172.png
-  ./bridges00175.png
-  ./bridges00178.png
-  ./bridges00181.png
-  ./bridges00184.png
-  ./bridges00187.png
-  ./bridges00190.png
-  ./bridges00193.png
-  ./bridges00196.png
-  ./bridges00199.png
-  ./bridges00202.png
  `;
     return data.split("\n")[index];
   }
-  const frameCount = 67;
+  const frameCount = 55;
   const images = [];
   const imageSeq = {
     frame: 1,
@@ -398,7 +385,22 @@ document
     });
   });
 
+  gsap.to("#page6", {
+    ease: "linear",
+    scrollTrigger: {
+      //markers: true,
+      trigger: "#page6",
+      scroller: "#main",
+      start: "bottom bottom",
+      end: "top top",
+      scrub: true
+    },
+    backgroundColor: "#093DCD",
+  });
+
 //page7 canvas
+
+
 function canvas2() {
   const canvas = document.querySelector("#page7>canvas");
   const context = canvas.getContext("2d");
@@ -411,6 +413,29 @@ function canvas2() {
     canvas.height = innerHeight;
     render();
   });
+
+  // function timer() {
+  //   var a = 0;
+  //   document.querySelector(".count").innerHTML = `${a}%`;
+  //   var interval = setInterval(() => {
+  //     if (a < 101) {
+  //       a += Math.floor(Math.random() * 20);
+  //       if (a < 101) {
+  //         document.querySelector(".count").innerHTML = `${a}%`;
+  //       } else {
+  //         a = 100;
+  //         document.querySelector(".count").innerHTML = `${a}%`;
+  //         clearInterval(interval)
+  //       }
+  //     } 
+  //   }, 150);
+  // }
+
+  function timer() {
+    console.log(imageSeq.frame);
+    var a = Math.floor(gsap.utils.mapRange(0, 136, 0, 61, imageSeq.frame));
+    document.querySelector(".count").innerHTML = `${a}%`;
+  }
 
   function files(index) {
     var data = `
@@ -580,8 +605,23 @@ https://thisismagma.com/assets/home/lore/seq/136.webp?2
       start: "top top",
       end: "250% top"
     },
-    onUpdate: render
+    onUpdate: render,
+    onStart: timer
   })
+
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#page7",
+      scroller: "#main",
+      scrub: 0.5,
+      start: "top top",
+      end: "250% top",
+    },
+    onUpdate: timer,
+  });
 
   images[1].onload = render
 
@@ -628,11 +668,10 @@ gsap.to(".page-7-cir", {
     trigger: ".page-7-cir",
     scroller: "#main",
     start: "top center",
-    markers: true,
     end: "bottom -180%",
-    scrub: 0.7
+    scrub: 0.7,
   },
-  scale: 3.5
+  scale: 3.5,
 });
 
 gsap.to(".page-7-inner-cir", {
@@ -640,9 +679,284 @@ gsap.to(".page-7-inner-cir", {
     trigger: ".page-7-inner-cir",
     scroller: "#main",
     start: "top center",
-    markers: true,
     end: "bottom -180%",
     scrub: 0.7,
   },
   backgroundColor: "#0a3bce91",
 });
+
+
+//page8
+
+gsap.from("#page8>video", {
+  scrollTrigger: {
+    trigger: "#page8>video",
+    scroller: "#main",
+    scrub: 0.5,
+    start: "40% bottom",
+    end: "50% center",
+  },
+  scale: 2,
+  opacity: 0,
+});
+
+gsap.from("#text>button", {
+  scrollTrigger: {
+    trigger: "#text>button",
+    scroller: "#main",
+    scrub: 0.5,
+    start: "50% bottom",
+    end: "50% center",
+  },
+  opacity: 0,
+});
+
+gsap.from("#text>h1", {
+  scrollTrigger: {
+    trigger: "#text>h1",
+    scroller: "#main",
+    scrub: 0.5,
+    start: "50% bottom",
+    end: "50% center",
+  },
+  opacity: 0,
+});
+
+//page10 bgcolor
+gsap.to("#page9", {
+  duration: 1,
+  ease: "linear",
+  scrollTrigger: {
+    markers: true,
+    trigger: "#page9",
+    scroller: "#main",
+    start: "bottom bottom",
+    end: "top top",
+    scrub: 0.5,
+  },
+  backgroundColor: "#03268E",
+});
+
+// gsap.to("#page10", {
+//   duration: 3,
+//   ease: "linear",
+//   scrollTrigger: {
+//     //markers: true,
+//     trigger: "#page10",
+//     scroller: "#main",
+//     start: "top bottom",
+//     end: "50% 50%",
+//     scrub: 0.5,
+//   },
+//   backgroundColor: "#03268E",
+// });
+
+//page10
+
+gsap.from(".part1, .part2, .part3", {
+  duration: 1,
+  scrollTrigger: {
+    trigger: ".part1, .part2, .part3",
+    scroller: "#main",
+    start: "top bottom",
+    end: "bottom end",
+  },
+  opacity: 0,
+  y: 100,
+  stagger: 0.3
+});
+
+//page11 canvas
+
+function canvas3() {
+  const element = document.querySelector(".page11-right");
+  const rect = element.getBoundingClientRect()
+  const canvas = document.querySelector(".page11-right>canvas");
+  const context = canvas.getContext("2d");
+
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+
+  //console.log(canvas.width, canvas.height)
+
+  addEventListener("resize", () => {
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    render();
+  });
+
+  function files(index) {
+    var data = `
+https://thisismagma.com/assets/home/roadmap/seq/1.webp
+https://thisismagma.com/assets/home/roadmap/seq/2.webp
+https://thisismagma.com/assets/home/roadmap/seq/3.webp
+https://thisismagma.com/assets/home/roadmap/seq/4.webp
+https://thisismagma.com/assets/home/roadmap/seq/5.webp
+https://thisismagma.com/assets/home/roadmap/seq/6.webp
+https://thisismagma.com/assets/home/roadmap/seq/7.webp
+https://thisismagma.com/assets/home/roadmap/seq/8.webp
+https://thisismagma.com/assets/home/roadmap/seq/9.webp
+https://thisismagma.com/assets/home/roadmap/seq/10.webp
+https://thisismagma.com/assets/home/roadmap/seq/11.webp
+https://thisismagma.com/assets/home/roadmap/seq/12.webp
+https://thisismagma.com/assets/home/roadmap/seq/13.webp
+https://thisismagma.com/assets/home/roadmap/seq/14.webp
+https://thisismagma.com/assets/home/roadmap/seq/15.webp
+https://thisismagma.com/assets/home/roadmap/seq/16.webp
+https://thisismagma.com/assets/home/roadmap/seq/17.webp
+https://thisismagma.com/assets/home/roadmap/seq/18.webp
+https://thisismagma.com/assets/home/roadmap/seq/19.webp
+https://thisismagma.com/assets/home/roadmap/seq/20.webp
+https://thisismagma.com/assets/home/roadmap/seq/21.webp
+https://thisismagma.com/assets/home/roadmap/seq/22.webp
+https://thisismagma.com/assets/home/roadmap/seq/23.webp
+https://thisismagma.com/assets/home/roadmap/seq/24.webp
+https://thisismagma.com/assets/home/roadmap/seq/25.webp
+https://thisismagma.com/assets/home/roadmap/seq/26.webp
+https://thisismagma.com/assets/home/roadmap/seq/27.webp
+https://thisismagma.com/assets/home/roadmap/seq/28.webp
+https://thisismagma.com/assets/home/roadmap/seq/29.webp
+https://thisismagma.com/assets/home/roadmap/seq/30.webp
+https://thisismagma.com/assets/home/roadmap/seq/31.webp
+https://thisismagma.com/assets/home/roadmap/seq/32.webp
+https://thisismagma.com/assets/home/roadmap/seq/33.webp
+https://thisismagma.com/assets/home/roadmap/seq/34.webp
+https://thisismagma.com/assets/home/roadmap/seq/35.webp
+https://thisismagma.com/assets/home/roadmap/seq/36.webp
+https://thisismagma.com/assets/home/roadmap/seq/37.webp
+https://thisismagma.com/assets/home/roadmap/seq/38.webp
+https://thisismagma.com/assets/home/roadmap/seq/39.webp
+https://thisismagma.com/assets/home/roadmap/seq/40.webp
+https://thisismagma.com/assets/home/roadmap/seq/41.webp
+https://thisismagma.com/assets/home/roadmap/seq/42.webp
+https://thisismagma.com/assets/home/roadmap/seq/43.webp
+https://thisismagma.com/assets/home/roadmap/seq/44.webp
+https://thisismagma.com/assets/home/roadmap/seq/45.webp
+https://thisismagma.com/assets/home/roadmap/seq/46.webp
+https://thisismagma.com/assets/home/roadmap/seq/47.webp
+https://thisismagma.com/assets/home/roadmap/seq/48.webp
+https://thisismagma.com/assets/home/roadmap/seq/49.webp
+https://thisismagma.com/assets/home/roadmap/seq/50.webp
+https://thisismagma.com/assets/home/roadmap/seq/51.webp
+https://thisismagma.com/assets/home/roadmap/seq/52.webp
+https://thisismagma.com/assets/home/roadmap/seq/53.webp
+https://thisismagma.com/assets/home/roadmap/seq/54.webp
+https://thisismagma.com/assets/home/roadmap/seq/55.webp
+https://thisismagma.com/assets/home/roadmap/seq/56.webp
+https://thisismagma.com/assets/home/roadmap/seq/57.webp
+https://thisismagma.com/assets/home/roadmap/seq/58.webp
+https://thisismagma.com/assets/home/roadmap/seq/59.webp
+https://thisismagma.com/assets/home/roadmap/seq/60.webp
+https://thisismagma.com/assets/home/roadmap/seq/61.webp
+https://thisismagma.com/assets/home/roadmap/seq/62.webp
+https://thisismagma.com/assets/home/roadmap/seq/63.webp
+https://thisismagma.com/assets/home/roadmap/seq/64.webp
+https://thisismagma.com/assets/home/roadmap/seq/65.webp
+https://thisismagma.com/assets/home/roadmap/seq/66.webp
+https://thisismagma.com/assets/home/roadmap/seq/67.webp
+https://thisismagma.com/assets/home/roadmap/seq/68.webp
+https://thisismagma.com/assets/home/roadmap/seq/69.webp
+https://thisismagma.com/assets/home/roadmap/seq/70.webp
+https://thisismagma.com/assets/home/roadmap/seq/71.webp
+https://thisismagma.com/assets/home/roadmap/seq/72.webp
+https://thisismagma.com/assets/home/roadmap/seq/73.webp
+https://thisismagma.com/assets/home/roadmap/seq/74.webp
+https://thisismagma.com/assets/home/roadmap/seq/75.webp
+
+`;
+
+    return data.split("\n")[index];
+  }
+
+  const frameCount = 75;
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
+
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
+
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#page11",
+      scroller: "#main",
+      scrub: 0.5,
+      start: "top top",
+      end: "250% top",
+    },
+    onUpdate: render,
+  });
+
+  images[1].onload = render;
+
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
+
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.height / img.height;
+    var wRatio = canvas.width / img.width;
+    var ratio = Math.max(hRatio, wRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
+  }
+
+  ScrollTrigger.create({
+    trigger: "#page11",
+    scroller: "#main",
+    pin: true,
+    start: "top top",
+    end: "250% top",
+  });
+}
+
+canvas3()
+
+//page11 scroll element
+gsap.to(".page11-left", {
+  scrollTrigger: {
+    trigger: ".page11-left",
+    scroller: "#main",
+    start: "38% bottom",
+    end: "bottom top",
+    scrub: 2,
+  },
+  y: -1600,
+});
+
+const page11_roadmap = document.querySelectorAll(".page11-roadmap");
+
+page11_roadmap.forEach((roadmap)=>{
+  //console.log(roadmap.children[1])
+  gsap.from(roadmap.children[1], {
+    scrollTrigger: {
+      trigger: roadmap,
+      scroller: "#main",
+      start: "top center",
+      end: "top center",
+      scrub: 3,
+    },
+    opacity: 0.1,
+  });
+
+})
