@@ -727,29 +727,27 @@ gsap.to("#page9", {
   duration: 1,
   ease: "linear",
   scrollTrigger: {
-    markers: true,
     trigger: "#page9",
     scroller: "#main",
     start: "bottom bottom",
-    end: "top top",
-    scrub: 0.5,
+    end: "bottom top",
+    scrub: 0.1,
   },
   backgroundColor: "#03268E",
 });
 
-// gsap.to("#page10", {
-//   duration: 3,
-//   ease: "linear",
-//   scrollTrigger: {
-//     //markers: true,
-//     trigger: "#page10",
-//     scroller: "#main",
-//     start: "top bottom",
-//     end: "50% 50%",
-//     scrub: 0.5,
-//   },
-//   backgroundColor: "#03268E",
-// });
+gsap.to("#page10", {
+  duration: 3,
+  ease: "linear",
+  scrollTrigger: {
+    trigger: "#page10",
+    scroller: "#main",
+    start: "10% bottom",
+    end: "50% 50%",
+    scrub: 0.5,
+  },
+  backgroundColor: "#03268E",
+});
 
 //page10
 
@@ -939,7 +937,7 @@ gsap.to(".page11-left", {
     scroller: "#main",
     start: "38% bottom",
     end: "bottom top",
-    scrub: 2,
+    scrub: .5,
   },
   y: -1600,
 });
