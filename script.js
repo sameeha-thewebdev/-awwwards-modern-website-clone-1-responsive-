@@ -432,7 +432,7 @@ function canvas2() {
   // }
 
   function timer() {
-    console.log(imageSeq.frame);
+    //console.log(imageSeq.frame);
     var a = Math.floor(gsap.utils.mapRange(0, 136, 0, 61, imageSeq.frame));
     document.querySelector(".count").innerHTML = `${a}%`;
   }
@@ -928,33 +928,40 @@ https://thisismagma.com/assets/home/roadmap/seq/75.webp
   });
 }
 
-canvas3()
 
 //page11 scroll element
-gsap.to(".page11-left", {
-  scrollTrigger: {
-    trigger: ".page11-left",
-    scroller: "#main",
-    start: "38% bottom",
-    end: "bottom top",
-    scrub: .5,
-  },
-  y: -1600,
-});
 
-const page11_roadmap = document.querySelectorAll(".page11-roadmap");
 
-page11_roadmap.forEach((roadmap)=>{
-  //console.log(roadmap.children[1])
-  gsap.from(roadmap.children[1], {
+if(window.innerWidth>600){
+
+  canvas3();
+
+  gsap.to(".page11-left", {
     scrollTrigger: {
-      trigger: roadmap,
+      trigger: ".page11-left",
       scroller: "#main",
-      start: "top center",
-      end: "top center",
-      scrub: 3,
+      start: "38% bottom",
+      end: "bottom top",
+      scrub: 0.5,
     },
-    opacity: 0.1,
+    y: -1600,
   });
 
-})
+  const page11_roadmap = document.querySelectorAll(".page11-roadmap");
+
+  page11_roadmap.forEach((roadmap) => {
+    //console.log(roadmap.children[1])
+    gsap.from(roadmap.children[1], {
+      scrollTrigger: {
+        trigger: roadmap,
+        scroller: "#main",
+        start: "top center",
+        end: "top center",
+        scrub: 3,
+      },
+      opacity: 0.1,
+    });
+  });
+
+
+}
